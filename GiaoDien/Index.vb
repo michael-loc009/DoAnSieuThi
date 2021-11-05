@@ -48,4 +48,18 @@
         frmQuanLiDonHang.WindowState = FormWindowState.Maximized
         frmQuanLiDonHang.Show()
     End Sub
+
+    Private Sub onClickNhapKhoMenuItem(sender As Object, e As EventArgs) Handles NhậpKhoToolStripMenuItem.Click
+        Dim frmQuanLiNhapKho As FrmQuanLyNhapKho = New FrmQuanLyNhapKho()
+        frmQuanLiNhapKho.MdiParent = Me
+        frmQuanLiNhapKho.WindowState = FormWindowState.Maximized
+        frmQuanLiNhapKho.Show()
+    End Sub
+
+    Private Sub XuấtKhoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XuấtKhoToolStripMenuItem.Click
+        Dim frmQuanLiXuatKho As FrmQuanLyXuatKho = New FrmQuanLyXuatKho()
+        frmQuanLiXuatKho.MdiParent = Me
+        frmQuanLiXuatKho.WindowState = FormWindowState.Maximized
+        frmQuanLiXuatKho.Show()
+    End Sub
 End Class

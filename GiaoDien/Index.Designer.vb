@@ -30,8 +30,10 @@ Partial Class Index
         Me.NgườiDùngToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SảnPhẩmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DanhMụcToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NhậpKhoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BánHàngToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ĐơnHàngToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XuấtKhoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuUngDung.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -59,7 +61,7 @@ Partial Class Index
         '
         'QuảnLýToolStripMenuItem
         '
-        Me.QuảnLýToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChiNhánhToolStripMenuItem, Me.NgườiDùngToolStripMenuItem, Me.SảnPhẩmToolStripMenuItem, Me.DanhMụcToolStripMenuItem})
+        Me.QuảnLýToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChiNhánhToolStripMenuItem, Me.NgườiDùngToolStripMenuItem, Me.SảnPhẩmToolStripMenuItem, Me.DanhMụcToolStripMenuItem, Me.NhậpKhoToolStripMenuItem, Me.XuấtKhoToolStripMenuItem})
         Me.QuảnLýToolStripMenuItem.Name = "QuảnLýToolStripMenuItem"
         Me.QuảnLýToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.QuảnLýToolStripMenuItem.Text = "Quản lý"
@@ -88,6 +90,12 @@ Partial Class Index
         Me.DanhMụcToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.DanhMụcToolStripMenuItem.Text = "Danh mục sản phẩm"
         '
+        'NhậpKhoToolStripMenuItem
+        '
+        Me.NhậpKhoToolStripMenuItem.Name = "NhậpKhoToolStripMenuItem"
+        Me.NhậpKhoToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.NhậpKhoToolStripMenuItem.Text = "Nhập kho"
+        '
         'BánHàngToolStripMenuItem
         '
         Me.BánHàngToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ĐơnHàngToolStripMenuItem})
@@ -100,6 +108,12 @@ Partial Class Index
         Me.ĐơnHàngToolStripMenuItem.Name = "ĐơnHàngToolStripMenuItem"
         Me.ĐơnHàngToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
         Me.ĐơnHàngToolStripMenuItem.Text = "Đơn hàng"
+        '
+        'XuấtKhoToolStripMenuItem
+        '
+        Me.XuấtKhoToolStripMenuItem.Name = "XuấtKhoToolStripMenuItem"
+        Me.XuấtKhoToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.XuấtKhoToolStripMenuItem.Text = "Xuất kho"
         '
         'Index
         '
@@ -130,4 +144,6 @@ Partial Class Index
     Friend WithEvents DanhMụcToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BánHàngToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ĐơnHàngToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NhậpKhoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XuấtKhoToolStripMenuItem As ToolStripMenuItem
 End Class
