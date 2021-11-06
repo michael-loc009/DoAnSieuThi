@@ -15,8 +15,18 @@
                 validInput = False
             End If
         ElseIf TypeOf control Is NumericUpDown Then
+            Dim min As Integer = 0
+            If expectedType IsNot "" Then
+                min = Integer.Parse(expectedType)
+            End If
+
             Dim num As NumericUpDown = control
-            If num.Value <= 0 Then
+            If num.Value <= 0 Or num.Value < min Then
+                validInput = False
+            End If
+        ElseIf TypeOf control Is DataGridView Then
+            Dim dtGridView As DataGridView = control
+            If dtGridView.RowCount() <= 0 Then
                 validInput = False
             End If
         End If
@@ -24,7 +34,13 @@
 
         If validInput = False Then
             e.Cancel = True
-            control.Focus()
+
+            If TypeOf control IsNot DataGridView Then
+                control.Focus()
+            Else
+                ShowErrorDialog(errMsg, "Thông báo", MessageBoxIcon.Error)
+            End If
+
             errProvider.SetError(control, errMsg)
         Else
             e.Cancel = False
@@ -32,6 +48,12 @@
         End If
 
     End Sub
+
+
+    Function ShowErrorDialog(message As String, dialogTitle As String, messageBoxIcon As MessageBoxIcon) As Boolean
+        Dim dialogResult As DialogResult = MessageBox.Show(message, dialogTitle, MessageBoxButtons.OK, messageBoxIcon, MessageBoxDefaultButton.Button1)
+        Return dialogResult = DialogResult.Yes
+    End Function
 
     Function ShowDialog(message As String, dialogTitle As String, messageBoxIcon As MessageBoxIcon) As Boolean
         Dim dialogResult As DialogResult = MessageBox.Show(message, dialogTitle, MessageBoxButtons.YesNo, messageBoxIcon, MessageBoxDefaultButton.Button2)

@@ -72,6 +72,7 @@ Public Class FrmQuanLySanPham
             Dim dmv As DataRowView = dtGridSanPham.Rows(dtGridSanPham.SelectedCells(0).RowIndex).DataBoundItem
             Dim sp As DataRow = dmv.Row
             sp("sp_xoa") = True
+
             DuLieu.GhiDuLieu("SanPham", dsSanPham)
             dsSanPham.Rows.Remove(sp)
         End If

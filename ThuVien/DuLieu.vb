@@ -4,7 +4,7 @@ Public Module DuLieu
 
     Dim DuongDan As String = TaoDuongDan(CurDir)
 
-    Dim ChuoiKetNoi As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../data/sieu_thi.accdb;Persist Security Info=True"
+    Dim ChuoiKetNoi As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../data/sieu_thi_1.accdb;Persist Security Info=True"
     Public Function DocDuLieu(sql As String) As DataTable
         Dim connection As OleDbConnection = New OleDbConnection(ChuoiKetNoi)
         Dim command As OleDbCommand = New OleDbCommand(sql, connection)

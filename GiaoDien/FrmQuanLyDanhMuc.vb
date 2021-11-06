@@ -24,6 +24,7 @@ Public Class FrmQuanLyDanhMuc
             dmsp("dmsp_ten") = txt_dmsp_ten.Text
             dmsp("dmsp_mo_ta") = txt_dmsp_mo_ta.Text
             dmsp("dmsp_xoa") = False
+
             dsDanhMucSanPham.Rows.Add(dmsp)
             DuLieu.GhiDuLieu("DanhMucSanPham", dsDanhMucSanPham)
         End If
@@ -47,7 +48,6 @@ Public Class FrmQuanLyDanhMuc
             dmsp("dmsp_xoa") = True
 
             DuLieu.GhiDuLieu("DanhMucSanPham", dsDanhMucSanPham)
-
             dsDanhMucSanPham.Rows.Remove(dmsp)
         End If
     End Sub
