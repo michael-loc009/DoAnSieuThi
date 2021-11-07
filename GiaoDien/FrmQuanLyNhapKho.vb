@@ -63,11 +63,11 @@ Public Class FrmQuanLyNhapKho
     Private Sub btn_loc_phieu_nhap_kho_Click(sender As Object, e As EventArgs) Handles btn_loc_phieu_nhap_kho.Click
         If date_from_nhap_kho.Text IsNot Nothing And date_to_nhap_kho.Text IsNot Nothing Then
             dsNhapKhoView.RowFilter = "nk_ngay_tao >= #" + date_from_nhap_kho.Value.ToString("MM/d/yyyy") +
-         "# And nk_ngay_tao <= #" + date_to_nhap_kho.Value.ToString("MM/d/yyyy") + "#"
+         "# And nk_ngay_tao <= #" + date_to_nhap_kho.Value.ToString("MM/d/yyyy HH:mm") + "#"
         ElseIf date_from_nhap_kho.Text IsNot Nothing And date_to_nhap_kho.Text Is Nothing Then
-            dsNhapKhoView.RowFilter = "nk_ngay_tao >= #" + date_from_nhap_kho.Value.ToString("MM/d/yyyy") + "#"
+            dsNhapKhoView.RowFilter = "nk_ngay_tao >= #" + date_from_nhap_kho.Value.ToString("MM/d/yyyy HH:mm") + "#"
         ElseIf date_from_nhap_kho.Text Is Nothing And date_to_nhap_kho.Text IsNot Nothing Then
-            dsNhapKhoView.RowFilter = "nk_ngay_tao <= #" + date_to_nhap_kho.Value.ToString("MM/d/yyyy") + "#"
+            dsNhapKhoView.RowFilter = "nk_ngay_tao <= #" + date_to_nhap_kho.Value.ToString("MM/d/yyyy HH:mm") + "#"
         Else
             dsNhapKhoView.RowFilter = ""
         End If
@@ -162,7 +162,7 @@ Public Class FrmQuanLyNhapKho
                 dtGridChiTietXuatKho.DataSource = dsNhapKhoChiTiet
             End If
         Else
-            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm và nhập số lượng nhập kho", "Thông báo", MessageBoxIcon.Error)
+            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm và nhập số lượng bớt", "Thông báo", MessageBoxIcon.Error)
         End If
     End Sub
 
