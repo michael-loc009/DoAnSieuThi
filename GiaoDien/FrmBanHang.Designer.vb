@@ -22,6 +22,7 @@ Partial Class FrmBanHang
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -35,7 +36,7 @@ Partial Class FrmBanHang
         Me.sp_gia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nk_ma_chi_nhanh = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btn_dh_them = New System.Windows.Forms.Button()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.link_tao_khach_hang = New System.Windows.Forms.LinkLabel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txt_dh_thanh_tien = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -45,16 +46,17 @@ Partial Class FrmBanHang
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txt_dh_tong_sp = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.btn_dh_xoa_san_pham = New System.Windows.Forms.Button()
-        Me.btn_dh_them_san_pham = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.num_dh_sl_san_pham = New System.Windows.Forms.NumericUpDown()
+        Me.cb_dh_khuyen_mai = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.cb_dh_khach_hang = New System.Windows.Forms.ComboBox()
+        Me.date_dh_ngay_tao = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.btn_dh_xoa_san_pham = New System.Windows.Forms.Button()
+        Me.num_dh_sl_san_pham = New System.Windows.Forms.NumericUpDown()
+        Me.btn_dh_them_san_pham = New System.Windows.Forms.Button()
         Me.dtGridDonHangChiTiet = New System.Windows.Forms.DataGridView()
         Me.dhct_ma = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dhct_ma_don_hang = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -63,7 +65,10 @@ Partial Class FrmBanHang
         Me.dhct_so_luong = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dhct_gia_ban = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dhct_thanh_tien = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.tooltip_dh_them_sp = New System.Windows.Forms.ToolTip(Me.components)
+        Me.tooltip_dh_xoa_sp = New System.Windows.Forms.ToolTip(Me.components)
+        Me.err_provider_dh_khach_hang = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.err_provider_dhct = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -74,13 +79,15 @@ Partial Class FrmBanHang
         Me.SplitContainer2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dtGridSanPham, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.num_dh_sl_san_pham, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer3.Panel1.SuspendLayout()
         Me.SplitContainer3.Panel2.SuspendLayout()
         Me.SplitContainer3.SuspendLayout()
-        CType(Me.dtGridDonHangChiTiet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.num_dh_sl_san_pham, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtGridDonHangChiTiet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.err_provider_dh_khach_hang, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.err_provider_dhct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -97,7 +104,7 @@ Partial Class FrmBanHang
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.btn_dh_them)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.LinkLabel1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.link_tao_khach_hang)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label9)
         Me.SplitContainer1.Panel2.Controls.Add(Me.txt_dh_thanh_tien)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label8)
@@ -107,10 +114,10 @@ Partial Class FrmBanHang
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label6)
         Me.SplitContainer1.Panel2.Controls.Add(Me.txt_dh_tong_sp)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label5)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.ComboBox3)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cb_dh_khuyen_mai)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label3)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.ComboBox2)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DateTimePicker1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cb_dh_khach_hang)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.date_dh_ngay_tao)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer3)
         Me.SplitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow
@@ -237,15 +244,15 @@ Partial Class FrmBanHang
         Me.btn_dh_them.Text = "Tạo đơn hàng"
         Me.btn_dh_them.UseVisualStyleBackColor = True
         '
-        'LinkLabel1
+        'link_tao_khach_hang
         '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(416, 65)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(105, 15)
-        Me.LinkLabel1.TabIndex = 21
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Tạo thẻ thành viên"
+        Me.link_tao_khach_hang.AutoSize = True
+        Me.link_tao_khach_hang.Location = New System.Drawing.Point(416, 65)
+        Me.link_tao_khach_hang.Name = "link_tao_khach_hang"
+        Me.link_tao_khach_hang.Size = New System.Drawing.Size(105, 15)
+        Me.link_tao_khach_hang.TabIndex = 21
+        Me.link_tao_khach_hang.TabStop = True
+        Me.link_tao_khach_hang.Text = "Tạo thẻ thành viên"
         '
         'Label9
         '
@@ -263,6 +270,7 @@ Partial Class FrmBanHang
         Me.txt_dh_thanh_tien.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txt_dh_thanh_tien.Location = New System.Drawing.Point(210, 320)
         Me.txt_dh_thanh_tien.Name = "txt_dh_thanh_tien"
+        Me.txt_dh_thanh_tien.ReadOnly = True
         Me.txt_dh_thanh_tien.Size = New System.Drawing.Size(200, 29)
         Me.txt_dh_thanh_tien.TabIndex = 18
         '
@@ -278,10 +286,11 @@ Partial Class FrmBanHang
         '
         'txt_dh_chiet_khau
         '
-        Me.txt_dh_chiet_khau.Enabled = False
+        Me.txt_dh_chiet_khau.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point)
         Me.txt_dh_chiet_khau.ForeColor = System.Drawing.Color.Maroon
         Me.txt_dh_chiet_khau.Location = New System.Drawing.Point(210, 272)
         Me.txt_dh_chiet_khau.Name = "txt_dh_chiet_khau"
+        Me.txt_dh_chiet_khau.ReadOnly = True
         Me.txt_dh_chiet_khau.Size = New System.Drawing.Size(200, 23)
         Me.txt_dh_chiet_khau.TabIndex = 16
         '
@@ -300,6 +309,7 @@ Partial Class FrmBanHang
         Me.txt_dh_tong_tien.Enabled = False
         Me.txt_dh_tong_tien.Location = New System.Drawing.Point(210, 221)
         Me.txt_dh_tong_tien.Name = "txt_dh_tong_tien"
+        Me.txt_dh_tong_tien.ReadOnly = True
         Me.txt_dh_tong_tien.Size = New System.Drawing.Size(200, 23)
         Me.txt_dh_tong_tien.TabIndex = 14
         '
@@ -318,6 +328,7 @@ Partial Class FrmBanHang
         Me.txt_dh_tong_sp.Enabled = False
         Me.txt_dh_tong_sp.Location = New System.Drawing.Point(210, 168)
         Me.txt_dh_tong_sp.Name = "txt_dh_tong_sp"
+        Me.txt_dh_tong_sp.ReadOnly = True
         Me.txt_dh_tong_sp.Size = New System.Drawing.Size(200, 23)
         Me.txt_dh_tong_sp.TabIndex = 12
         '
@@ -331,53 +342,13 @@ Partial Class FrmBanHang
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "Khuyến mãi:"
         '
-        'ComboBox3
+        'cb_dh_khuyen_mai
         '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(210, 115)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(200, 23)
-        Me.ComboBox3.TabIndex = 10
-        '
-        'btn_dh_xoa_san_pham
-        '
-        Me.btn_dh_xoa_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_dh_xoa_san_pham.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.btn_dh_xoa_san_pham.Location = New System.Drawing.Point(28, 198)
-        Me.btn_dh_xoa_san_pham.Name = "btn_dh_xoa_san_pham"
-        Me.btn_dh_xoa_san_pham.Size = New System.Drawing.Size(34, 30)
-        Me.btn_dh_xoa_san_pham.TabIndex = 12
-        Me.btn_dh_xoa_san_pham.Text = "-"
-        Me.btn_dh_xoa_san_pham.UseVisualStyleBackColor = True
-        '
-        'btn_dh_them_san_pham
-        '
-        Me.btn_dh_them_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_dh_them_san_pham.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.btn_dh_them_san_pham.Location = New System.Drawing.Point(28, 147)
-        Me.btn_dh_them_san_pham.Name = "btn_dh_them_san_pham"
-        Me.btn_dh_them_san_pham.Size = New System.Drawing.Size(34, 30)
-        Me.btn_dh_them_san_pham.TabIndex = 11
-        Me.btn_dh_them_san_pham.Text = "+"
-        Me.btn_dh_them_san_pham.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label4.Location = New System.Drawing.Point(12, 82)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(60, 15)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "Số lượng:"
-        '
-        'num_dh_sl_san_pham
-        '
-        Me.num_dh_sl_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.num_dh_sl_san_pham.Location = New System.Drawing.Point(12, 118)
-        Me.num_dh_sl_san_pham.Name = "num_dh_sl_san_pham"
-        Me.num_dh_sl_san_pham.Size = New System.Drawing.Size(72, 23)
-        Me.num_dh_sl_san_pham.TabIndex = 0
+        Me.cb_dh_khuyen_mai.FormattingEnabled = True
+        Me.cb_dh_khuyen_mai.Location = New System.Drawing.Point(210, 115)
+        Me.cb_dh_khuyen_mai.Name = "cb_dh_khuyen_mai"
+        Me.cb_dh_khuyen_mai.Size = New System.Drawing.Size(200, 23)
+        Me.cb_dh_khuyen_mai.TabIndex = 10
         '
         'Label3
         '
@@ -389,21 +360,21 @@ Partial Class FrmBanHang
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Khách hàng:"
         '
-        'ComboBox2
+        'cb_dh_khach_hang
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(210, 62)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(200, 23)
-        Me.ComboBox2.TabIndex = 7
+        Me.cb_dh_khach_hang.FormattingEnabled = True
+        Me.cb_dh_khach_hang.Location = New System.Drawing.Point(210, 62)
+        Me.cb_dh_khach_hang.Name = "cb_dh_khach_hang"
+        Me.cb_dh_khach_hang.Size = New System.Drawing.Size(200, 23)
+        Me.cb_dh_khach_hang.TabIndex = 7
         '
-        'DateTimePicker1
+        'date_dh_ngay_tao
         '
-        Me.DateTimePicker1.Enabled = False
-        Me.DateTimePicker1.Location = New System.Drawing.Point(210, 12)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 23)
-        Me.DateTimePicker1.TabIndex = 6
+        Me.date_dh_ngay_tao.Enabled = False
+        Me.date_dh_ngay_tao.Location = New System.Drawing.Point(210, 12)
+        Me.date_dh_ngay_tao.Name = "date_dh_ngay_tao"
+        Me.date_dh_ngay_tao.Size = New System.Drawing.Size(200, 23)
+        Me.date_dh_ngay_tao.TabIndex = 6
         '
         'Label2
         '
@@ -435,6 +406,59 @@ Partial Class FrmBanHang
         Me.SplitContainer3.Size = New System.Drawing.Size(753, 541)
         Me.SplitContainer3.SplitterDistance = 395
         Me.SplitContainer3.TabIndex = 23
+        '
+        'Panel2
+        '
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.btn_dh_xoa_san_pham)
+        Me.Panel2.Controls.Add(Me.num_dh_sl_san_pham)
+        Me.Panel2.Controls.Add(Me.btn_dh_them_san_pham)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(99, 395)
+        Me.Panel2.TabIndex = 13
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label4.Location = New System.Drawing.Point(12, 82)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(60, 15)
+        Me.Label4.TabIndex = 10
+        Me.Label4.Text = "Số lượng:"
+        '
+        'btn_dh_xoa_san_pham
+        '
+        Me.btn_dh_xoa_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_dh_xoa_san_pham.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.btn_dh_xoa_san_pham.Location = New System.Drawing.Point(28, 198)
+        Me.btn_dh_xoa_san_pham.Name = "btn_dh_xoa_san_pham"
+        Me.btn_dh_xoa_san_pham.Size = New System.Drawing.Size(34, 30)
+        Me.btn_dh_xoa_san_pham.TabIndex = 12
+        Me.btn_dh_xoa_san_pham.Text = "-"
+        Me.btn_dh_xoa_san_pham.UseVisualStyleBackColor = True
+        '
+        'num_dh_sl_san_pham
+        '
+        Me.num_dh_sl_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.num_dh_sl_san_pham.Location = New System.Drawing.Point(12, 118)
+        Me.num_dh_sl_san_pham.Name = "num_dh_sl_san_pham"
+        Me.num_dh_sl_san_pham.Size = New System.Drawing.Size(72, 23)
+        Me.num_dh_sl_san_pham.TabIndex = 0
+        '
+        'btn_dh_them_san_pham
+        '
+        Me.btn_dh_them_san_pham.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_dh_them_san_pham.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.btn_dh_them_san_pham.Location = New System.Drawing.Point(28, 147)
+        Me.btn_dh_them_san_pham.Name = "btn_dh_them_san_pham"
+        Me.btn_dh_them_san_pham.Size = New System.Drawing.Size(34, 30)
+        Me.btn_dh_them_san_pham.TabIndex = 11
+        Me.btn_dh_them_san_pham.Text = "+"
+        Me.btn_dh_them_san_pham.UseVisualStyleBackColor = True
         '
         'dtGridDonHangChiTiet
         '
@@ -503,18 +527,13 @@ Partial Class FrmBanHang
         Me.dhct_thanh_tien.Name = "dhct_thanh_tien"
         Me.dhct_thanh_tien.ReadOnly = True
         '
-        'Panel2
+        'err_provider_dh_khach_hang
         '
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.btn_dh_xoa_san_pham)
-        Me.Panel2.Controls.Add(Me.num_dh_sl_san_pham)
-        Me.Panel2.Controls.Add(Me.btn_dh_them_san_pham)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(99, 395)
-        Me.Panel2.TabIndex = 13
+        Me.err_provider_dh_khach_hang.ContainerControl = Me
+        '
+        'err_provider_dhct
+        '
+        Me.err_provider_dhct.ContainerControl = Me
         '
         'FrmBanHang
         '
@@ -537,14 +556,16 @@ Partial Class FrmBanHang
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.dtGridSanPham, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.num_dh_sl_san_pham, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.Panel1.ResumeLayout(False)
         Me.SplitContainer3.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.ResumeLayout(False)
-        CType(Me.dtGridDonHangChiTiet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.num_dh_sl_san_pham, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtGridDonHangChiTiet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.err_provider_dh_khach_hang, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.err_provider_dhct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -553,18 +574,18 @@ Partial Class FrmBanHang
     Friend WithEvents txt_dh_tim_sp As TextBox
     Friend WithEvents dtGridSanPham As DataGridView
     Friend WithEvents cb_dh_cn As ComboBox
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents date_dh_ngay_tao As DateTimePicker
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label3 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents cb_dh_khach_hang As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents num_dh_sl_san_pham As NumericUpDown
     Friend WithEvents btn_dh_them_san_pham As Button
     Friend WithEvents btn_dh_xoa_san_pham As Button
     Friend WithEvents Label5 As Label
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cb_dh_khuyen_mai As ComboBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txt_dh_tong_sp As TextBox
     Friend WithEvents Label7 As Label
@@ -574,7 +595,7 @@ Partial Class FrmBanHang
     Friend WithEvents Label9 As Label
     Friend WithEvents txt_dh_thanh_tien As TextBox
     Friend WithEvents dtGridDonHangChiTiet As DataGridView
-    Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents link_tao_khach_hang As LinkLabel
     Friend WithEvents btn_dh_them As Button
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents ma_san_pham As DataGridViewTextBoxColumn
@@ -591,4 +612,8 @@ Partial Class FrmBanHang
     Friend WithEvents dhct_gia_ban As DataGridViewTextBoxColumn
     Friend WithEvents dhct_thanh_tien As DataGridViewTextBoxColumn
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents tooltip_dh_them_sp As ToolTip
+    Friend WithEvents tooltip_dh_xoa_sp As ToolTip
+    Friend WithEvents err_provider_dh_khach_hang As ErrorProvider
+    Friend WithEvents err_provider_dhct As ErrorProvider
 End Class

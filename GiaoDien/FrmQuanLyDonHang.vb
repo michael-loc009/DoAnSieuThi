@@ -7,6 +7,9 @@ Public Class FrmQuanLyDonHang
 
     Dim dsChiNhanh As DataTable
 
+    Dim selectedMaDonHang As Integer
+    Dim selectedDh As DataRow
+
     Private Sub FrmQuanLyDonHang_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dsDonHang = DuLieu.DocDuLieu("SELECT a.*, (a.dh_tong_tien - a.dh_tien_khuyen_mai) as thanh_tien, d.dhtt_ten, c.kh_ho_ten, b.cn_ten from ((DonHang a inner join ChiNhanh b on a.dh_ma_chi_nhanh = b.cn_ma) inner join KhachHang c on c.kh_ma = a.dh_ma_khach_hang) inner join DonHangTrangThai d on d.dhtt_ma = a.dh_trang_thai where b.cn_xoa = false")
 
@@ -29,6 +32,8 @@ Public Class FrmQuanLyDonHang
         date_from_don_hang.CustomFormat = "dd-MM-yyyy"
         date_to_don_hang.Format = DateTimePickerFormat.Custom
         date_to_don_hang.CustomFormat = "dd-MM-yyyy"
+
+        dtGridDonHang.FirstDisplayedCell.Selected = False
 
     End Sub
 
@@ -56,11 +61,21 @@ Public Class FrmQuanLyDonHang
         Dim frmBanHang As FrmBanHang = New FrmBanHang()
         frmBanHang.MdiParent = Index
         frmBanHang.WindowState = FormWindowState.Maximized
+
         frmBanHang.Show()
     End Sub
 
     Private Sub btn_dh_sua_Click(sender As Object, e As EventArgs) Handles btn_dh_sua.Click
-
+        If selectedMaDonHang > 0 And selectedDh IsNot Nothing Then
+            Dim frmBanHang As FrmBanHang = New FrmBanHang()
+            frmBanHang.MdiParent = Index
+            frmBanHang.WindowState = FormWindowState.Maximized
+            frmBanHang.maDonHangChinhSua = selectedMaDonHang
+            frmBanHang.selectedDh = selectedDh
+            frmBanHang.Show()
+        Else
+            ThuVien.ShowErrorDialog("Vui lòng chọn đơn hàng cần được cập nhật", "Thông báo", MessageBoxIcon.Error)
+        End If
     End Sub
 
     Private Sub dtGridDonHang_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtGridDonHang.CellClick
@@ -68,7 +83,10 @@ Public Class FrmQuanLyDonHang
             Dim dmv As DataRowView = dtGridDonHang.Rows(e.RowIndex).DataBoundItem
             Dim dh As DataRow = dmv.Row
 
+
             If Not IsDBNull(dh("dh_ma")) Then
+                selectedDh = dh
+                selectedMaDonHang = dh("dh_ma")
                 DocDonHangChiTiet(dh("dh_ma"))
             End If
         End If
