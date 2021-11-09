@@ -67,12 +67,19 @@ Public Class FrmQuanLyDonHang
 
     Private Sub btn_dh_sua_Click(sender As Object, e As EventArgs) Handles btn_dh_sua.Click
         If selectedMaDonHang > 0 And selectedDh IsNot Nothing Then
-            Dim frmBanHang As FrmBanHang = New FrmBanHang()
-            frmBanHang.MdiParent = Index
-            frmBanHang.WindowState = FormWindowState.Maximized
-            frmBanHang.maDonHangChinhSua = selectedMaDonHang
-            frmBanHang.selectedDh = selectedDh
-            frmBanHang.Show()
+
+            If selectedDh("dh_trang_thai") <> 1 Then
+                ThuVien.ShowErrorDialog("Đơn hàng trạng thái Hủy hay Hoàn thành không được phép cập nhật", "Thông báo", MessageBoxIcon.Error)
+            Else
+                Dim frmBanHang As FrmBanHang = New FrmBanHang()
+                frmBanHang.MdiParent = Index
+                frmBanHang.WindowState = FormWindowState.Maximized
+                frmBanHang.maDonHangChinhSua = selectedMaDonHang
+                frmBanHang.selectedDh = selectedDh
+                frmBanHang.Show()
+            End If
+
+
         Else
             ThuVien.ShowErrorDialog("Vui lòng chọn đơn hàng cần được cập nhật", "Thông báo", MessageBoxIcon.Error)
         End If

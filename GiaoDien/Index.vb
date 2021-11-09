@@ -62,4 +62,11 @@
         frmQuanLiXuatKho.WindowState = FormWindowState.Maximized
         frmQuanLiXuatKho.Show()
     End Sub
+
+    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
+        Dim frmQuanLiMenu As FrmQuanLyMenu = New FrmQuanLyMenu()
+        frmQuanLiMenu.MdiParent = Me
+        frmQuanLiMenu.WindowState = FormWindowState.Maximized
+        frmQuanLiMenu.Show()
+    End Sub
 End Class

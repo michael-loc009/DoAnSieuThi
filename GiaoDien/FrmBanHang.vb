@@ -9,13 +9,15 @@ Public Class FrmBanHang
 
     Public selectedDh As DataRow
 
-    Dim selected_sp_index As Integer
+    Dim selected_sp_index As Integer = -1
+    Dim selected_dhct_index As Integer = -1
     Dim maDonHangTaoMoi As Integer = 0
     Public maDonHangChinhSua As Integer
 
     Dim dsChiNhanh As DataTable
     Dim dsKhuyenMai As DataTable
     Dim dsKhachHang As DataTable
+    Dim dsTrangThaiDonHang As DataTable
 
     Private Sub FrmBanHang_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -57,6 +59,12 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
         cb_dh_cn.ValueMember = "cn_ma"
         cb_dh_cn.SelectedIndex = 0
 
+        dsTrangThaiDonHang = DuLieu.DocDuLieu("Select * from DonHangTrangThai")
+        cb_dh_trang_thai.DataSource = dsTrangThaiDonHang
+        cb_dh_trang_thai.DisplayMember = "dhtt_ten"
+        cb_dh_trang_thai.ValueMember = "dhtt_ma"
+
+
         doc_ds_khach_hang()
 
         Dim currentDateTime As Date = DateTime.Now()
@@ -89,6 +97,8 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
             txt_dh_thanh_tien.Text = selectedDh("dh_tong_tien") - selectedDh("dh_tien_khuyen_mai")
             txt_dh_tong_sp.Text = dtGridDonHangChiTiet.Rows.Count
             cb_dh_khuyen_mai.Enabled = False
+            cb_dh_trang_thai.Enabled = True
+            cb_dh_trang_thai.SelectedValue = selectedDh("dh_trang_thai")
 
             If selectedDh("dh_tien_khuyen_mai") > 0 Then
                 Dim dsDonHangKhuyenMai As DataTable = ThuVien.DocDuLieu($"select top 1 * from DonHangKhuyenMaiDonHang where dhkmdh_ma_don_hang = {maDonHangChinhSua}")
@@ -115,6 +125,10 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
     Private Sub cb_dh_cn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb_dh_cn.SelectedIndexChanged
         If cb_dh_cn.SelectedIndex > 0 Then
             dsSanPhamView.RowFilter = $"nk_ma_chi_nhanh = {cb_dh_cn.SelectedValue}"
+            If maDonHangChinhSua <= 0 Then
+                dtGridDonHangChiTiet.DataSource = Nothing
+            End If
+
         End If
     End Sub
 
@@ -183,26 +197,25 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
     End Sub
 
     Private Sub btn_dh_xoa_san_pham_Click(sender As Object, e As EventArgs) Handles btn_dh_xoa_san_pham.Click
-        If selected_sp_index >= 0 And num_dh_sl_san_pham.Value > 0 And dsDonHangChiTiet IsNot Nothing Then
-            Dim dmv As DataRowView = dtGridSanPham.Rows(selected_sp_index).DataBoundItem
-            Dim selected_sp As DataRow = dmv.Row
-
-            Dim dhct_found As DataRow = tim_dhct_by_sp(selected_sp("ma_san_pham"))
+        If selected_dhct_index >= 0 And num_dh_sl_san_pham.Value > 0 And dsDonHangChiTiet IsNot Nothing Then
+            Dim dmv As DataRowView = dtGridDonHangChiTiet.Rows(selected_dhct_index).DataBoundItem
+            Dim dhct_found As DataRow = dmv.Row
             If dhct_found IsNot Nothing Then
                 dhct_found("dhct_so_luong") -= num_dh_sl_san_pham.Value
 
-                cap_nhap_gt_dh("bot", num_dh_sl_san_pham.Value, num_dh_sl_san_pham.Value * selected_sp("sp_gia"))
+                cap_nhap_gt_dh("bot", num_dh_sl_san_pham.Value, num_dh_sl_san_pham.Value * dhct_found("dhct_gia_ban"))
 
                 If dhct_found("dhct_so_luong") <= 0 Then
-                    Dim removed_dhct As DataRow = dsDonHangChiTiet.Rows.Find(selected_sp("ma_san_pham"))
+                    Dim removed_dhct As DataRow = dsDonHangChiTiet.Rows.Find(dhct_found("dhct_ma_san_pham"))
 
                     If removed_dhct IsNot Nothing Then
                         BindingContext(dsDonHangChiTiet).RemoveAt(dsDonHangChiTiet.Rows.IndexOf(removed_dhct))
                         BindingContext(dsDonHangChiTiet).EndCurrentEdit()
                         txt_dh_chiet_khau.Text = "0"
+                        selected_dhct_index = -1
                     End If
                 Else
-                    Dim giaMoi As Integer = Convert.ToInt32(selected_sp("sp_gia"))
+                    Dim giaMoi As Integer = Convert.ToInt32(dhct_found("dhct_gia_ban"))
                     Dim soluongMoi As Integer = Convert.ToInt32(dhct_found("dhct_so_luong"))
                     dhct_found("dhct_thanh_tien") = giaMoi * soluongMoi
                 End If
@@ -210,13 +223,19 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
                 dtGridDonHangChiTiet.DataSource = dsDonHangChiTiet
             End If
         Else
-            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm và số lượng bớt", "Thông báo", MessageBoxIcon.Error)
+            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm trong giỏ hàng và số lượng bớt", "Thông báo", MessageBoxIcon.Error)
         End If
     End Sub
 
     Private Sub dtGridSanPham_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtGridSanPham.CellClick
         If e.RowIndex >= 0 Then
             selected_sp_index = e.RowIndex
+        End If
+    End Sub
+
+    Private Sub dtGridDonHangChiTiet_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtGridDonHangChiTiet.CellClick
+        If e.RowIndex >= 0 Then
+            selected_dhct_index = e.RowIndex
         End If
     End Sub
 
@@ -353,6 +372,7 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
                 Dim updated_dh As DataRow = dsDonHang.Rows.Find(maDonHangChinhSua)
                 updated_dh("dh_tong_tien") = Integer.Parse(txt_dh_tong_tien.Text)
                 updated_dh("dh_tien_khuyen_mai") = Integer.Parse(txt_dh_chiet_khau.Text)
+                updated_dh("dh_trang_thai") = cb_dh_trang_thai.SelectedValue
 
             End If
 
@@ -403,4 +423,6 @@ FROM (SELECT a.nkct_ma_san_pham AS ma_san_pham, nk.nk_ma_chi_nhanh, b.sp_ten, b.
             txt_dh_tong_sp.Text = "0"
         End If
     End Sub
+
+
 End Class

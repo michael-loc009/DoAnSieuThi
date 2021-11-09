@@ -69,6 +69,8 @@ Partial Class FrmBanHang
         Me.tooltip_dh_xoa_sp = New System.Windows.Forms.ToolTip(Me.components)
         Me.err_provider_dh_khach_hang = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.err_provider_dhct = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.cb_dh_trang_thai = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -103,7 +105,6 @@ Partial Class FrmBanHang
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.btn_dh_them)
         Me.SplitContainer1.Panel2.Controls.Add(Me.link_tao_khach_hang)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label9)
         Me.SplitContainer1.Panel2.Controls.Add(Me.txt_dh_thanh_tien)
@@ -237,7 +238,7 @@ Partial Class FrmBanHang
         '
         'btn_dh_them
         '
-        Me.btn_dh_them.Location = New System.Drawing.Point(257, 361)
+        Me.btn_dh_them.Location = New System.Drawing.Point(257, 415)
         Me.btn_dh_them.Name = "btn_dh_them"
         Me.btn_dh_them.Size = New System.Drawing.Size(118, 23)
         Me.btn_dh_them.TabIndex = 22
@@ -388,7 +389,7 @@ Partial Class FrmBanHang
         '
         'SplitContainer3
         '
-        Me.SplitContainer3.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.SplitContainer3.Cursor = System.Windows.Forms.Cursors.HSplit
         Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer3.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer3.Name = "SplitContainer3"
@@ -396,6 +397,9 @@ Partial Class FrmBanHang
         '
         'SplitContainer3.Panel1
         '
+        Me.SplitContainer3.Panel1.Controls.Add(Me.Label10)
+        Me.SplitContainer3.Panel1.Controls.Add(Me.btn_dh_them)
+        Me.SplitContainer3.Panel1.Controls.Add(Me.cb_dh_trang_thai)
         Me.SplitContainer3.Panel1.Controls.Add(Me.Panel2)
         Me.SplitContainer3.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
         '
@@ -404,7 +408,7 @@ Partial Class FrmBanHang
         Me.SplitContainer3.Panel2.Controls.Add(Me.dtGridDonHangChiTiet)
         Me.SplitContainer3.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.SplitContainer3.Size = New System.Drawing.Size(753, 541)
-        Me.SplitContainer3.SplitterDistance = 395
+        Me.SplitContainer3.SplitterDistance = 465
         Me.SplitContainer3.TabIndex = 23
         '
         'Panel2
@@ -417,7 +421,7 @@ Partial Class FrmBanHang
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(99, 395)
+        Me.Panel2.Size = New System.Drawing.Size(99, 465)
         Me.Panel2.TabIndex = 13
         '
         'Label4
@@ -473,7 +477,7 @@ Partial Class FrmBanHang
         Me.dtGridDonHangChiTiet.Name = "dtGridDonHangChiTiet"
         Me.dtGridDonHangChiTiet.ReadOnly = True
         Me.dtGridDonHangChiTiet.RowTemplate.Height = 25
-        Me.dtGridDonHangChiTiet.Size = New System.Drawing.Size(753, 142)
+        Me.dtGridDonHangChiTiet.Size = New System.Drawing.Size(753, 72)
         Me.dtGridDonHangChiTiet.TabIndex = 20
         '
         'dhct_ma
@@ -535,6 +539,25 @@ Partial Class FrmBanHang
         '
         Me.err_provider_dhct.ContainerControl = Me
         '
+        'cb_dh_trang_thai
+        '
+        Me.cb_dh_trang_thai.Enabled = False
+        Me.cb_dh_trang_thai.FormattingEnabled = True
+        Me.cb_dh_trang_thai.Location = New System.Drawing.Point(210, 375)
+        Me.cb_dh_trang_thai.Name = "cb_dh_trang_thai"
+        Me.cb_dh_trang_thai.Size = New System.Drawing.Size(200, 23)
+        Me.cb_dh_trang_thai.TabIndex = 14
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label10.Location = New System.Drawing.Point(111, 378)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(69, 15)
+        Me.Label10.TabIndex = 24
+        Me.Label10.Text = "Thành tiền:"
+        '
         'FrmBanHang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -557,6 +580,7 @@ Partial Class FrmBanHang
         Me.Panel1.PerformLayout()
         CType(Me.dtGridSanPham, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.Panel1.ResumeLayout(False)
+        Me.SplitContainer3.Panel1.PerformLayout()
         Me.SplitContainer3.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.ResumeLayout(False)
@@ -616,4 +640,6 @@ Partial Class FrmBanHang
     Friend WithEvents tooltip_dh_xoa_sp As ToolTip
     Friend WithEvents err_provider_dh_khach_hang As ErrorProvider
     Friend WithEvents err_provider_dhct As ErrorProvider
+    Friend WithEvents Label10 As Label
+    Friend WithEvents cb_dh_trang_thai As ComboBox
 End Class

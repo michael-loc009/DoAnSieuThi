@@ -96,7 +96,7 @@ Public Class FrmQuanLyXuatKho
 
             dtGridChiTietXuatKho.DataSource = dsXuatKhoChiTiet
         Else
-            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm và nhập số lượng nhập kho", "Thông báo", MessageBoxIcon.Error)
+            ThuVien.ShowErrorDialog("Vui lòng chọn sản phẩm và nhập số lượng xuất kho", "Thông báo", MessageBoxIcon.Error)
         End If
     End Sub
 
@@ -252,6 +252,6 @@ Public Class FrmQuanLyXuatKho
     End Sub
 
     Private Sub dtGridChiTietXuatKho_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles dtGridChiTietXuatKho.Validating
-        ThuVien.ValidateInput(dtGridChiTietXuatKho, e, err_provider_xkct, "", "Vui lòng thêm tối thiểu sản phẩm trong đơn nhập kho")
+        ThuVien.ValidateInput(dtGridChiTietXuatKho, e, err_provider_xkct, "", "Vui lòng thêm tối thiểu sản phẩm trong đơn xuất kho")
     End Sub
 End Class
