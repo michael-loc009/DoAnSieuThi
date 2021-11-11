@@ -42,7 +42,7 @@
         frmQuanLiDanhMuc.Show()
     End Sub
 
-    Private Sub ĐơnHàngToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ĐơnHàngToolStripMenuItem.Click
+    Private Sub ĐonHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ĐơnHàngToolStripMenuItem.Click
         Dim frmQuanLiDonHang As FrmQuanLyDonHang = New FrmQuanLyDonHang()
         frmQuanLiDonHang.MdiParent = Me
         frmQuanLiDonHang.WindowState = FormWindowState.Maximized
@@ -56,7 +56,7 @@
         frmQuanLiNhapKho.Show()
     End Sub
 
-    Private Sub XuấtKhoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XuấtKhoToolStripMenuItem.Click
+    Private Sub XuatKhoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XuấtKhoToolStripMenuItem.Click
         Dim frmQuanLiXuatKho As FrmQuanLyXuatKho = New FrmQuanLyXuatKho()
         frmQuanLiXuatKho.MdiParent = Me
         frmQuanLiXuatKho.WindowState = FormWindowState.Maximized
@@ -68,5 +68,40 @@
         frmQuanLiMenu.MdiParent = Me
         frmQuanLiMenu.WindowState = FormWindowState.Maximized
         frmQuanLiMenu.Show()
+    End Sub
+
+    Private Sub DoanhThuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DoanhThuToolStripMenuItem.Click
+        Dim frmThongKeDoanhThu As FrmThongKeDoanhThu = New FrmThongKeDoanhThu()
+        frmThongKeDoanhThu.MdiParent = Me
+        frmThongKeDoanhThu.WindowState = FormWindowState.Maximized
+        frmThongKeDoanhThu.Show()
+    End Sub
+
+    Private Sub SoLuongDonHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiềnToolStripMenuItem.Click
+        Dim frmThongKeDonHang As FrmThongKeDonHang = New FrmThongKeDonHang()
+        frmThongKeDonHang.MdiParent = Me
+        frmThongKeDonHang.WindowState = FormWindowState.Maximized
+        frmThongKeDonHang.Show()
+    End Sub
+
+    Private Sub SanPhamToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SảnPhẩmToolStripMenuItem1.Click
+        Dim frmThongKeSanPham As FrmThongKeSanPham = New FrmThongKeSanPham()
+        frmThongKeSanPham.MdiParent = Me
+        frmThongKeSanPham.WindowState = FormWindowState.Maximized
+        frmThongKeSanPham.Show()
+    End Sub
+
+    Private Sub TienToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiềnTrongNgàyToolStripMenuItem.Click
+        Dim frmDonHangSan As FrmThongKeTien = New FrmThongKeTien()
+        FrmThongKeTien.MdiParent = Me
+        FrmThongKeTien.WindowState = FormWindowState.Maximized
+        FrmThongKeTien.Show()
+    End Sub
+
+    Private Sub SoluongSanPhamNhapXuatToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SốLượngSảnPhẩmNhậpxuấtToolStripMenuItem.Click
+        Dim frmThongKeXuatNhapKho As FrmThongKeXuatNhapKho = New FrmThongKeXuatNhapKho()
+        frmThongKeXuatNhapKho.MdiParent = Me
+        frmThongKeXuatNhapKho.WindowState = FormWindowState.Maximized
+        frmThongKeXuatNhapKho.Show()
     End Sub
 End Class
