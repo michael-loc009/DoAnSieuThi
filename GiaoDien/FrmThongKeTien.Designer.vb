@@ -27,6 +27,7 @@ Partial Class FrmThongKeTien
         Me.dtGrid_tk_tien = New System.Windows.Forms.DataGridView()
         Me.ngay = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.doanh_thu = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -44,6 +45,7 @@ Partial Class FrmThongKeTien
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
         Me.SplitContainer1.Panel1.Controls.Add(Me.date_tk_tien)
         Me.SplitContainer1.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
         '
@@ -95,6 +97,16 @@ Partial Class FrmThongKeTien
         Me.doanh_thu.Name = "doanh_thu"
         Me.doanh_thu.ReadOnly = True
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label3.Location = New System.Drawing.Point(208, 18)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(82, 15)
+        Me.Label3.TabIndex = 12
+        Me.Label3.Text = "Ngày hiện tại:"
+        '
         'FrmThongKeTien
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -105,6 +117,7 @@ Partial Class FrmThongKeTien
         Me.Name = "FrmThongKeTien"
         Me.Text = "Thống kê tiền"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
@@ -118,4 +131,5 @@ Partial Class FrmThongKeTien
     Friend WithEvents dtGrid_tk_tien As DataGridView
     Friend WithEvents ngay As DataGridViewTextBoxColumn
     Friend WithEvents doanh_thu As DataGridViewTextBoxColumn
+    Friend WithEvents Label3 As Label
 End Class

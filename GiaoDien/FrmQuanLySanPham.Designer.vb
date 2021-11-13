@@ -93,6 +93,7 @@ Partial Class FrmQuanLySanPham
         Me.dtGridSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dtGridSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtGridSanPham.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.sp_ma, Me.sp_ten, Me.sp_mo_ta, Me.sp_gia, Me.sp_so_luong_toi_thieu, Me.dmsp_ten, Me.sp_ma_danh_muc, Me.sp_xoa})
+        Me.dtGridSanPham.Cursor = System.Windows.Forms.Cursors.Hand
         Me.dtGridSanPham.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dtGridSanPham.Location = New System.Drawing.Point(0, 23)
         Me.dtGridSanPham.MultiSelect = False
@@ -183,6 +184,7 @@ Partial Class FrmQuanLySanPham
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.Panel1)
         Me.Panel2.Controls.Add(Me.txt_sp_ten)
+        Me.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"

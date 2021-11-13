@@ -35,6 +35,18 @@ Public Class FrmQuanLyDonHang
 
         dtGridDonHang.FirstDisplayedCell.Selected = False
 
+        For Each item As DataRow In Index.DsQuyen.Rows
+            If item("qcn_ma_chuc_nang") = 8 Then
+                btn_dh_them.Enabled = True
+                btn_dh_them.Cursor = Cursors.Hand
+            End If
+
+            If item("qcn_ma_chuc_nang") = 9 Then
+                btn_dh_sua.Enabled = True
+                btn_dh_sua.Cursor = Cursors.Hand
+            End If
+        Next
+
     End Sub
 
     Private Sub btn_loc_don_hang_Click(sender As Object, e As EventArgs) Handles btn_loc_don_hang.Click
@@ -61,7 +73,6 @@ Public Class FrmQuanLyDonHang
         Dim frmBanHang As FrmBanHang = New FrmBanHang()
         frmBanHang.MdiParent = Index
         frmBanHang.WindowState = FormWindowState.Maximized
-
         frmBanHang.Show()
     End Sub
 

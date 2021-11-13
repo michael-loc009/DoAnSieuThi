@@ -1,5 +1,12 @@
 ﻿Public Class Index
+
+    Public TaiKhoanDangNhap As DataRow
+    Public DsQuyenCn As DataTable
+    Public DsQuyen As DataTable
+    Public CnMaArr As String
+
     Private Sub onClickThoatMenuItem(sender As Object, e As EventArgs) Handles ThoátToolStripMenuItem.Click
+        FrmDangNhap.Close()
         Me.Close()
     End Sub
 
@@ -77,14 +84,14 @@
         frmThongKeDoanhThu.Show()
     End Sub
 
-    Private Sub SoLuongDonHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiềnToolStripMenuItem.Click
+    Private Sub SoLuongDonHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SoLuongDHToolStripMenuItem.Click
         Dim frmThongKeDonHang As FrmThongKeDonHang = New FrmThongKeDonHang()
         frmThongKeDonHang.MdiParent = Me
         frmThongKeDonHang.WindowState = FormWindowState.Maximized
         frmThongKeDonHang.Show()
     End Sub
 
-    Private Sub SanPhamToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SảnPhẩmToolStripMenuItem1.Click
+    Private Sub SanPhamToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SoLuongSanPhamToolStripMenuItem1.Click
         Dim frmThongKeSanPham As FrmThongKeSanPham = New FrmThongKeSanPham()
         frmThongKeSanPham.MdiParent = Me
         frmThongKeSanPham.WindowState = FormWindowState.Maximized
@@ -103,5 +110,74 @@
         frmThongKeXuatNhapKho.MdiParent = Me
         frmThongKeXuatNhapKho.WindowState = FormWindowState.Maximized
         frmThongKeXuatNhapKho.Show()
+    End Sub
+
+    Private Sub Index_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.Visible = False
+        Dim frm As FrmDangNhap = New FrmDangNhap()
+        Dim result As DialogResult = frm.ShowDialog()
+        If result = DialogResult.Yes Then
+            Dim cnArr As List(Of Integer) = New List(Of Integer)
+            For Each item1 As DataRow In DsQuyenCn.Rows
+                cnArr.Add(item1("tkcn_ma_chi_nhanh"))
+            Next
+
+            CnMaArr = String.Join(",", cnArr)
+
+
+            For Each item As DataRow In DsQuyen.Rows
+                If item("qcn_ma_chuc_nang") = 1 Then
+                    ChiNhánhToolStripMenuItem.Enabled = True
+                End If
+
+                If item("qcn_ma_chuc_nang") = 2 Then
+                    SảnPhẩmToolStripMenuItem.Enabled = True
+                End If
+
+                If item("qcn_ma_chuc_nang") = 3 Then
+                    DanhMụcToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 4 Then
+                    NhậpKhoToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 5 Then
+                    XuấtKhoToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 6 Then
+                    NgườiDùngToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 7 Then
+                    ĐơnHàngToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 10 Then
+                    TiềnTrongNgàyToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 11 Then
+                    DoanhThuToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 12 Then
+                    SoLuongSanPhamToolStripMenuItem1.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 13 Then
+                    SốLượngSảnPhẩmNhậpxuấtToolStripMenuItem.Enabled = True
+                End If
+                If item("qcn_ma_chuc_nang") = 14 Then
+                    SoLuongDHToolStripMenuItem.Enabled = True
+                End If
+
+                If item("qcn_ma_chuc_nang") = 15 Then
+                    MenuToolStripMenuItem.Enabled = True
+                End If
+            Next
+
+            Me.Visible = True
+        Else
+            Me.Close()
+        End If
+
+
+
+
     End Sub
 End Class

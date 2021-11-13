@@ -85,7 +85,8 @@ Partial Class FrmQuanLyDonHang
         '
         'btn_dh_sua
         '
-        Me.btn_dh_sua.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_dh_sua.Cursor = System.Windows.Forms.Cursors.No
+        Me.btn_dh_sua.Enabled = False
         Me.btn_dh_sua.Location = New System.Drawing.Point(608, 60)
         Me.btn_dh_sua.Name = "btn_dh_sua"
         Me.btn_dh_sua.Size = New System.Drawing.Size(136, 34)
@@ -95,7 +96,8 @@ Partial Class FrmQuanLyDonHang
         '
         'btn_dh_them
         '
-        Me.btn_dh_them.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_dh_them.Cursor = System.Windows.Forms.Cursors.No
+        Me.btn_dh_them.Enabled = False
         Me.btn_dh_them.Location = New System.Drawing.Point(397, 60)
         Me.btn_dh_them.Name = "btn_dh_them"
         Me.btn_dh_them.Size = New System.Drawing.Size(136, 34)
